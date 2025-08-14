@@ -1,0 +1,99 @@
+name: 'Joint Security Review'
+description: To request a joint review or track progress on an active review
+title: "[Security Review]: "
+labels:
+  - tag/security-and-compliance
+  - needs-triage
+body:
+  - type: input
+    id: project-name
+    attributes:
+      label: Project Name
+      description: The name of the project to be reviewed.
+      placeholder: e.g., My CNCF Project
+    validations:
+      required: true
+  - type: input
+    id: github-url
+    attributes:
+      label: GitHub URL
+      description: The main GitHub repository URL for the project.
+      placeholder: e.g., https://github.com/org/project-name
+    validations:
+      required: true
+  - type: checkboxes
+    id: prereq
+    attributes:
+      label: Prerequisites
+      description: |
+        The first step in a [joint security review]((https://tag-security.cncf.io/community/assessments/guide/joint-assessment/) is a maintainer-completed security self-assessment.
+        
+        **New to the process?**: Learn more about the self-assessment [here]((https://tag-security.cncf.io/community/assessments/guide/self-assessment/).
+        The [Open and Secure](https://tag-security.cncf.io/community/assessments/Open_and_Secure.pdf) book can be used to guide you through the process.
+      options:
+        - label: I confirm that I have completed my project's self-assessment and understand that this is a prerequisite for a joint review.
+          required: true
+  - type: input
+    id: self-assessment
+    attributes:
+      label: Self Assessment
+      description: |
+        Please provide a link to your completed self-assessment here. While the final assessment will be a Markdown file in the `cncf/toc` repository, using a collaborative editing 
+        tool (like Google Docs or HackMD) for the initial draft can help streamline the process.
+        
+        This link will be the primary location for our joint review.
+      placeholder: e.g. https://github.com/cncf/toc/projects/project-name/assessments/self-assessment.md
+    validations:
+      required: true
+  - type: textarea
+    id: cncf-project-stage
+    attributes:
+      label: CNCF Project Stage
+      description: "For proposals going through TAG review, please indicate the stage (sandbox, incubation/graduation) and link to the TOC issue."
+      placeholder: |
+        e.g., Incubation, https://github.com/cncf/toc/issues/368
+    validations:
+      required: false
+  - type: dropdown
+    id: security-provider
+    attributes:
+      label: Security Provider
+      description: "Is the primary function of the project to support the security of an integrating system?"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "### Security Review Checklist"
+  - type: checkboxes
+    id: team
+    attributes:
+      label: Identify the team
+      description: Please check off items as they are completed during the identification of the security review team.
+      options:
+        - label: Project security lead assigned
+        - label: Lead security reviewer assigned
+        - label: 1 or more additional reviewer(s) assigned
+        - label: Every reviewer has read the security reviewer guidelines and stated a declaration of conflict.
+        - label: Sign off by facilitator on reviewer conflicts
+    validations:
+      required: true
+  - type: checkboxes
+    id: review-progress
+    attributes:
+      label: Progress Checklist
+      description: Please check off items as they are completed during the review process.
+      options:
+        - label: Create Slack channel (e.g., #sec-assess-projectname)
+        - label: Project lead provides draft document
+        - label: "Naive question phase" by Lead Security Reviewer
+        - label: Assign issue to security reviewers
+        - label: Initial review completed
+        - label: Presentation & discussion completed
+        - label: Draft findings shared with project
+        - label: Assessment summary and doc checked into /assessments/projects/project-name (requires at least 1 co-chair approval)
+        - label: CNCF TOC presentation (if requested by TOC)
+    validations:
+      required: true
